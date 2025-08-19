@@ -71,3 +71,60 @@ footer {
   font-size: 14px;
   color: #ccc;
 }
+
+/* ===== Медіазапити ===== */
+
+/* 📱 Телефони */
+@media (max-width: 600px) {
+  .wrapper {
+    margin: 20px auto;
+    padding: 0 10px;
+  }
+
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .avatar {
+    width: 80px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 📱➡️💻 Планшети */
+@media (min-width: 601px) and (max-width: 900px) {
+  .projects {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .avatar {
+    width: 90px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* 💻 Десктопи */
+@media (min-width: 901px) {
+  .projects {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .avatar {
+    width: 120px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
