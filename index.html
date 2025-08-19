@@ -1,42 +1,100 @@
 <!DOCTYPE html>
 <html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Максим Сас - Мій Лендінг</title>
-    <link rel="icon" href="logo.png" type="image/png">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <img style="width: 100px; padding-right: 20px;" src="portrait.jpg" alt="Мій портрет" class="portrait">
-        <h1>Максим Сас</h1>
-    </header>
-
-    <div class="container">
-        <div class="bio">
-            <h2>Про мене</h2>
-            <p>Привіт! Мене звати Максим Сас, я народився в місті Кам'янець-Подільському. 9 років навчався в школі №6, потім вступив до коледжу на Комп'ютерні науки, а тепер вже 3 роки навчаюсь в університеті.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Максим Сас — Портфоліо</title>
+    <link rel="icon" href="logo.png" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="glass">
+        <img src="portrait.jpg" alt="Портрет Максима Саса" class="avatar" />
+        <div>
+          <h1>Максим Сас</h1>
+          <p class="subtitle">Junior Web Developer · Front-End</p>
         </div>
+      </header>
 
-        <div class="skills">
-            <div>
-                <h2>Мої навички</h2>
-                <p>Маю досвід роботи з Blender та трохи знайомий з FrontEnd.</p>
-            </div>
-            <div>
-                <h2>Друзі</h2>
-                <p>У мене є класний друг на ім'я Сірьога, з яким ми любимо пити пиво. </br> 
-                <p style="text-align: center">Сірьога - крутий друг!!!</p>
-               </p>
-            </div>
-        </div>
+      <main>
+        <section class="glass about">
+          <h2>Про мене</h2>
+          <p>
+            Мотивований Junior Web Developer, що переважно працює з фронтендом і
+            має базовий досвід з бекендом. Люблю вчитись новому й прокачувати
+            навички на практиці. Проходив стажування у Web Art Work, де працював
+            над застосунком wHealth.
+          </p>
+        </section>
+
+        <section class="glass skills">
+          <h2>Навички</h2>
+          <ul>
+            <li>Angular</li>
+            <li>JavaScript / TypeScript</li>
+            <li>HTML5 / CSS (SCSS)</li>
+            <li>Node.js (базово)</li>
+            <li>Capacitor.js</li>
+          </ul>
+        </section>
+
+        <section class="glass experience">
+          <h2>Досвід</h2>
+          <h3>Front-end Developer Intern — Web Art Work</h3>
+          <p><small>Січень 2025 — Березень 2025</small></p>
+          <ul>
+            <li>Розробляв та підтримував компоненти на Angular.</li>
+            <li>
+              Працював у команді, отримував фідбек і вдосконалював продукт.
+            </li>
+            <li>Участь у проєкті wHealth.</li>
+          </ul>
+        </section>
+
+        <section class="projects">
+          <h2 class="glass">Проєкти</h2>
+
+          <article class="glass project">
+            <h3>trustyconvert</h3>
+            <p>Застосунок для конвертації валют у реальному часі (Angular).</p>
+            <a
+              href="https://github.com/IT-Kamianets/trustyconvert"
+              target="_blank"
+              >GitHub</a
+            >
+          </article>
+
+          <article class="glass project">
+            <h3>diary</h3>
+            <p>
+              Щоденник для запису думок із сортуванням та зміною теми (Angular).
+            </p>
+            <a href="https://github.com/IT-Kamianets/diary" target="_blank"
+              >GitHub</a
+            >
+          </article>
+
+          <article class="glass project">
+            <h3>wHealth</h3>
+            <p>
+              Веб та мобільний застосунок для керування медичною інформацією
+              (Angular + Node.js + MongoDB).
+            </p>
+            <a
+              href="https://github.com/maksimkaSAS/healthDiploma"
+              target="_blank"
+              >GitHub</a
+            >
+          </article>
+        </section>
+      </main>
+
+      <footer class="glass">
+        <p>&copy; <span id="year"></span> Максим Сас</p>
+      </footer>
     </div>
 
-    <footer>
-        <p>&copy; <span id="year"></span> Максим Сас</p>
-    </footer>
-
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

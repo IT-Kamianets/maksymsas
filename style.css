@@ -1,66 +1,73 @@
+/* Загальні стилі */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  color: #fff;
 }
 
+/* Обмеження ширини */
+.wrapper {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+/* Хедер */
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.avatar {
+  width: 100px;
+  border-radius: 50%;
+}
+.subtitle {
+  font-weight: 300;
+  color: #ddd;
 }
 
-header img.portret {
-    height: 80px;
-    width: 80px;
-    border-radius: 50%;
-    margin-right: 15px;
+/* Секції */
+h2 {
+  margin-top: 0;
+  font-weight: 600;
+}
+.skills ul, .experience ul {
+  padding-left: 20px;
+}
+.projects {
+  display: grid;
+  gap: 20px;
+}
+.project a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+.project a:hover {
+  background: rgba(255,255,255,0.4);
 }
 
-header h1 {
-    margin: 0;
-    font-size: 24px;
-}
-
-.container {
-    padding: 20px;
-}
-
-.bio {
-    background-color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.bio h2 {
-    margin-top: 0;
-}
-
-.skills {
-    display: flex;
-    justify-content: space-between;
-}
-
-.skills div {
-    width: 48%;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
+/* Футер */
 footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: #ccc;
 }

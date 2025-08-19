@@ -1,5 +1,9 @@
-// Отримуємо поточний рік
-const currentYear = new Date().getFullYear();
+// // Отримуємо поточний рік
+// const currentYear = new Date().getFullYear();
 
-// Встановлюємо значення року в елемент із id "year"
-document.getElementById('year').textContent = currentYear;
+// // Встановлюємо значення року в елемент із id "year"
+// document.getElementById('year').textContent = currentYear;
+
+
+// Динамічний рік у футері
+document.getElementById("year").textContent = new Date().getFullYear();
