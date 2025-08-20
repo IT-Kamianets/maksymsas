@@ -1,11 +1,16 @@
 /* ===== Базові стилі ===== */
+/* ===== Базові стилі ===== */
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
-  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  --x: 50%;
+  --y: 50%;
+  background: radial-gradient(circle at var(--x) var(--y), #928dab, #1f1c2c);
   color: #fff;
   line-height: 1.6;
+  transition: background 0.1s linear;
 }
+
 
 /* Обмеження ширини (wrapper) */
 .wrapper {

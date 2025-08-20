@@ -45,4 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     lightboxImg.style.transform = `scale(${scale})`;
   });
+
+
+  // Рух градієнта за курсором
+document.addEventListener("mousemove", (e) => {
+  let x = (e.clientX / window.innerWidth) * 100;
+  let y = (e.clientY / window.innerHeight) * 100;
+  document.body.style.setProperty("--x", `${x}%`);
+  document.body.style.setProperty("--y", `${y}%`);
+});
+
 });
