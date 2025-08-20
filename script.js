@@ -47,12 +47,34 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  // Рух градієнта за курсором
+//   // Рух градієнта за курсором
+// document.addEventListener("mousemove", (e) => {
+//   let x = (e.clientX / window.innerWidth) * 100;
+//   let y = (e.clientY / window.innerHeight) * 100;
+//   document.body.style.setProperty("--x", `${x}%`);
+//   document.body.style.setProperty("--y", `${y}%`);
+// });
+
+// Плавний рух градієнта
+let targetX = 50, targetY = 50; // ціль
+let currentX = 50, currentY = 50; // поточна позиція
+
 document.addEventListener("mousemove", (e) => {
-  let x = (e.clientX / window.innerWidth) * 100;
-  let y = (e.clientY / window.innerHeight) * 100;
-  document.body.style.setProperty("--x", `${x}%`);
-  document.body.style.setProperty("--y", `${y}%`);
+  targetX = (e.clientX / window.innerWidth) * 100;
+  targetY = (e.clientY / window.innerHeight) * 100;
 });
+
+function animateGradient() {
+  // коефіцієнт інерції (0.05 = дуже плавно, 0.2 = швидше)
+  currentX += (targetX - currentX) * 0.08;
+  currentY += (targetY - currentY) * 0.08;
+
+  document.body.style.setProperty("--x", `${currentX}%`);
+  document.body.style.setProperty("--y", `${currentY}%`);
+
+  requestAnimationFrame(animateGradient);
+}
+animateGradient();
+
 
 });
