@@ -206,6 +206,10 @@ footer {
   .projects {
     grid-template-columns: 1fr;
   }
+
+    .social-links {
+    justify-content: center;
+  }
 }
 
 /* 📱➡️💻 Планшети */
