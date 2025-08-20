@@ -1,6 +1,10 @@
 /* ===== Базові стилі ===== */
-/* ===== Базові стилі ===== */
+
+html {
+  scroll-behavior: smooth; /* плавний скролл при переходах */
+}
 body {
+  overflow-y: scroll;
   margin: 0;
   font-family: "Inter", sans-serif;
   --x: 50%;
