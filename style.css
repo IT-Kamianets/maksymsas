@@ -205,6 +205,27 @@ footer {
 
 
 
+/* Плавне масштабування блоків */
+.scale-on-scroll {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center top; /* точка масштабування */
+}
+
+/* Початковий стан */
+.scale-on-scroll.invisible {
+  transform: scale(0.9);
+  opacity: 0.7;
+}
+
+/* Коли блок повністю видно */
+.scale-on-scroll.visible {
+  transform: scale(1);
+  opacity: 1;
+}
+
+
+
+
 
 /* ===== Медіазапити ===== */
 

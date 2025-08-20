@@ -78,3 +78,29 @@ animateGradient();
 
 
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const blocks = document.querySelectorAll(".glass, header, .project");
+
+  blocks.forEach(block => {
+    block.classList.add("scale-on-scroll", "invisible"); // спочатку менші
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.intersectionRatio >= 0.5) {
+        entry.target.classList.add("visible");
+        entry.target.classList.remove("invisible");
+      } else {
+        entry.target.classList.remove("visible");
+        entry.target.classList.add("invisible");
+      }
+    });
+  }, {
+    threshold: [0, 0.5, 1] // реагує на часткову видимість
+  });
+
+  blocks.forEach(block => observer.observe(block));
+});
+
