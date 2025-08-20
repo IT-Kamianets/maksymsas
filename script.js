@@ -84,24 +84,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const blocks = document.querySelectorAll(".glass, header, .project");
 
   blocks.forEach(block => {
-    block.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+    block.style.transition = "transform 0.5s ease, opacity 0.5s ease";
+    block.style.transformOrigin = "center top";
+    block.style.transform = "scale(0.97)";
+    block.style.opacity = 0.85;
   });
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      // intersectionRatio = 0 (не видно) -> scale 0.9
-      // intersectionRatio = 1 (повністю видно) -> scale 1
       const ratio = entry.intersectionRatio;
-      const scale = 0.9 + 0.1 * Math.min(Math.max(ratio, 0), 1); // scale від 0.9 до 1
-      const opacity = 0.7 + 0.3 * Math.min(Math.max(ratio, 0), 1); // opacity від 0.7 до 1
+      const scale = 0.97 + 0.03 * Math.min(Math.max(ratio, 0), 1); // 0.97 → 1
+      const opacity = 0.85 + 0.15 * Math.min(Math.max(ratio, 0), 1); // 0.85 → 1
       entry.target.style.transform = `scale(${scale})`;
       entry.target.style.opacity = opacity;
     });
   }, {
-    threshold: Array.from({length: 101}, (_, i) => i / 100) // дуже плавно, 0.00, 0.01 ... 1
+    threshold: Array.from({length: 101}, (_, i) => i / 100) // плавне відслідковування
   });
 
   blocks.forEach(block => observer.observe(block));
 });
+
 
 
