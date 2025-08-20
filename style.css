@@ -104,6 +104,54 @@ footer {
   margin-top: 30px;
 }
 
+
+/* ===== Lightbox ===== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  display: none; /* ховається за замовчуванням */
+  justify-content: center;
+  align-items: center;
+  background: rgba(20, 20, 30, 0.5); /* затемнення */
+  backdrop-filter: blur(15px);       /* glass blur */
+  z-index: 1000;
+}
+
+.lightbox.active {
+  display: flex; /* показати при активації */
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Хрестик */
+.close-btn {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.close-btn:hover {
+  transform: rotate(180deg);  /* обертання на 180° */
+  color: #ff6b6b;             /* легкий акцент при hover */
+}
+
+
 /* ===== Медіазапити ===== */
 
 /* 📱 Телефони */
