@@ -127,7 +127,9 @@ footer {
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   animation: fadeIn 0.3s ease;
+  transition: transform 0.2s ease; /* плавний zoom */
 }
+
 
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
