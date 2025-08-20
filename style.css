@@ -180,6 +180,26 @@ footer {
 }
 
 
+/* Контейнер для кнопок у проєкті */
+.project-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Кнопка App */
+.app-btn {
+  background: rgba(46, 204, 113, 0.2);  /* зелений */
+  border: 1px solid rgba(46, 204, 113, 0.4);
+}
+
+.app-btn:hover {
+  background: rgba(46, 204, 113, 0.4);
+  transform: translateY(-2px) scale(1.05);
+}
+
+
+
 
 /* ===== Медіазапити ===== */
 
