@@ -84,18 +84,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const blocks = document.querySelectorAll(".glass, header, .project");
 
   blocks.forEach(block => {
-    block.style.transition = "transform 0.5s ease, opacity 0.5s ease";
+    block.style.transition = "transform 0.6s ease, opacity 0.6s ease";
     block.style.transformOrigin = "center top";
-    block.style.transform = "scale(0.97)";
+    block.style.transform = "scale(0.97) rotateY(180deg)";
     block.style.opacity = 0.85;
   });
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       const ratio = entry.intersectionRatio;
-      const scale = 0.97 + 0.03 * Math.min(Math.max(ratio, 0), 1); // 0.97 → 1
-      const opacity = 0.85 + 0.15 * Math.min(Math.max(ratio, 0), 1); // 0.85 → 1
-      entry.target.style.transform = `scale(${scale})`;
+      // scale від 0.97 до 1
+      const scale = 0.97 + 0.03 * Math.min(Math.max(ratio, 0), 1);
+      // opacity від 0.85 до 1
+      const opacity = 0.85 + 0.15 * Math.min(Math.max(ratio, 0), 1);
+      // rotateY від 180deg (не видно) до 0deg (повністю видно)
+      const rotateY = 180 - 180 * Math.min(Math.max(ratio, 0), 1);
+
+      entry.target.style.transform = `scale(${scale}) rotateY(${rotateY}deg)`;
       entry.target.style.opacity = opacity;
     });
   }, {
@@ -104,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   blocks.forEach(block => observer.observe(block));
 });
+
 
 
 
