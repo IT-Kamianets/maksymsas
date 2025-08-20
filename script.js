@@ -85,26 +85,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   blocks.forEach(block => {
     block.style.transition = "transform 0.6s ease, opacity 0.6s ease";
-    block.style.transformOrigin = "center top";
-    block.style.transform = "scale(0.97) rotateY(180deg)";
+    block.style.transformOrigin = "center center"; // точка обертання по середині
+    block.style.transform = "scale(0.97) rotateX(180deg)";
     block.style.opacity = 0.85;
   });
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       const ratio = entry.intersectionRatio;
-      // scale від 0.97 до 1
-      const scale = 0.97 + 0.03 * Math.min(Math.max(ratio, 0), 1);
-      // opacity від 0.85 до 1
-      const opacity = 0.85 + 0.15 * Math.min(Math.max(ratio, 0), 1);
-      // rotateY від 180deg (не видно) до 0deg (повністю видно)
-      const rotateY = 180 - 180 * Math.min(Math.max(ratio, 0), 1);
+      const scale = 0.97 + 0.03 * Math.min(Math.max(ratio, 0), 1); // scale 0.97 -> 1
+      const opacity = 0.85 + 0.15 * Math.min(Math.max(ratio, 0), 1);   // opacity 0.85 -> 1
+      const rotateX = 180 - 180 * Math.min(Math.max(ratio, 0), 1);    // rotateX 180deg -> 0deg
 
-      entry.target.style.transform = `scale(${scale}) rotateY(${rotateY}deg)`;
+      entry.target.style.transform = `scale(${scale}) rotateX(${rotateX}deg)`;
       entry.target.style.opacity = opacity;
     });
   }, {
-    threshold: Array.from({length: 101}, (_, i) => i / 100) // плавне відслідковування
+    threshold: Array.from({length: 101}, (_, i) => i / 100) // дуже плавне відслідковування
   });
 
   blocks.forEach(block => observer.observe(block));
