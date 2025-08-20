@@ -84,29 +84,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const blocks = document.querySelectorAll(".glass, header, .project");
 
   blocks.forEach(block => {
-    block.style.transition = "transform 0.6s ease, opacity 0.6s ease";
-    block.style.transformOrigin = "center center"; // точка обертання по середині
-    block.style.transform = "scale(0.97) rotateX(180deg)";
+    block.style.transition = "transform 0.5s ease, opacity 0.5s ease";
+    block.style.transformOrigin = "center top";
+    block.style.transform = "scale(0.97)";
     block.style.opacity = 0.85;
   });
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       const ratio = entry.intersectionRatio;
-      const scale = 0.97 + 0.03 * Math.min(Math.max(ratio, 0), 1); // scale 0.97 -> 1
-      const opacity = 0.85 + 0.15 * Math.min(Math.max(ratio, 0), 1);   // opacity 0.85 -> 1
-      const rotateX = 180 - 180 * Math.min(Math.max(ratio, 0), 1);    // rotateX 180deg -> 0deg
-
-      entry.target.style.transform = `scale(${scale}) rotateX(${rotateX}deg)`;
+      const scale = 0.97 + 0.03 * Math.min(Math.max(ratio, 0), 1); // 0.97 → 1
+      const opacity = 0.85 + 0.15 * Math.min(Math.max(ratio, 0), 1); // 0.85 → 1
+      entry.target.style.transform = `scale(${scale})`;
       entry.target.style.opacity = opacity;
     });
   }, {
-    threshold: Array.from({length: 101}, (_, i) => i / 100) // дуже плавне відслідковування
+    threshold: Array.from({length: 101}, (_, i) => i / 100) // плавне відслідковування
   });
 
   blocks.forEach(block => observer.observe(block));
 });
-
 
 
 
