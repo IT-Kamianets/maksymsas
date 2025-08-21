@@ -153,6 +153,8 @@ body {
   box-shadow: 0 0 10px rgba(255,175,63,0.8);
 }
 
+/*dep
+
 /* Увімкнено (світла тема) — зсув ручки праворуч */
 #theme-switch:checked + .switch .knob {
   transform: translateX(30px);
