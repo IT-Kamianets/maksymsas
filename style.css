@@ -113,6 +113,11 @@ footer {
   margin-top: 30px;
 }
 
+footer.glass {
+  border-radius: 0 0 8px 8px !important;
+}
+
+
 
 /* ===== Lightbox ===== */
 .lightbox {
