@@ -124,65 +124,39 @@ body {
   place-items: center;
 }
 
-/* ===== Іконки ===== */
+/* Декоративні "іконки" за допомогою градієнтів */
 .switch::before,
 .switch::after {
   content: "";
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
+  opacity: 0.8;
   transition: opacity 0.3s ease;
-  pointer-events: none; /* щоб не ловили кліки */
-  z-index: 0; /* нижче повзунка */
 }
 
-/* 🌙 Місяць зліва */
+/* Місяць ліворуч (темна тема) */
 .switch::before {
-  left: 8px;
+  left: 10px;
   border-radius: 50%;
   background: radial-gradient(circle at 40% 40%, #fff 0 55%, transparent 56%);
   box-shadow: inset -3px -3px 0 0 rgba(0,0,0,0.25);
-  opacity: 1; /* видно за замовчуванням */
 }
 
-/* ☀️ Сонце справа */
+/* Сонце праворуч (світла тема) */
 .switch::after {
-  right: 8px;
+  right: 10px;
   border-radius: 50%;
   background: radial-gradient(circle, #ffd86b 40%, #ffaf3f 60%, transparent 61%);
   box-shadow: 0 0 10px rgba(255,175,63,0.8);
-  opacity: 0; /* сховане за замовчуванням */
 }
 
-/* ===== Повзунок ===== */
-.switch .knob {
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-  transition: transform 0.28s cubic-bezier(.2,.8,.2,1), background 0.3s ease;
-  z-index: 1; /* вище іконок */
-}
-
-/* Увімкнена світла тема */
+/* Увімкнено (світла тема) — зсув ручки праворуч */
 #theme-switch:checked + .switch .knob {
   transform: translateX(30px);
 }
-
-/* Логіка: міняємо прозорість іконок */
-#theme-switch:checked + .switch::before {
-  opacity: 0; /* місяць ховається */
-}
-#theme-switch:checked + .switch::after {
-  opacity: 1; /* сонце показується */
-}
-
 
 /* Легка індикація активності треку */
 #theme-switch:checked + .switch {
