@@ -162,6 +162,32 @@ body {
   outline-offset: 2px;
 }
 
+/* ===== Соц. кнопки (у хедері) ===== */
+.social-links {
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+}
+
+.social-btn {
+  padding: 6px 14px;
+  border-radius: 10px;
+  background: var(--btn-bg);
+  border: 1px solid var(--btn-bd);
+  color: var(--text);
+  font-size: 14px;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  transition: background 0.3s, transform 0.2s, border-color 0.3s;
+}
+
+.social-btn:hover {
+  background: var(--btn-hov);
+  border-color: var(--btn-bd);
+  transform: translateY(-2px);
+}
+
+
 /* ===== Контент ===== */
 
 .wrapper {
