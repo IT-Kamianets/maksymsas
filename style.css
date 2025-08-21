@@ -124,7 +124,7 @@ body {
   place-items: center;
 }
 
-/* Декоративні "іконки" за допомогою градієнтів */
+/* ===== Іконки ===== */
 .switch::before,
 .switch::after {
   content: "";
@@ -133,25 +133,27 @@ body {
   transform: translateY(-50%);
   width: 18px;
   height: 18px;
-  opacity: 1;
   transition: opacity 0.3s ease;
-  z-index: 1; /* поверх треку, але під повзунком */
+  pointer-events: none; /* щоб не ловили кліки */
+  z-index: 0; /* нижче повзунка */
 }
 
-/* 🌙 Місяць (зліва, для темної теми) */
+/* 🌙 Місяць зліва */
 .switch::before {
   left: 8px;
   border-radius: 50%;
   background: radial-gradient(circle at 40% 40%, #fff 0 55%, transparent 56%);
   box-shadow: inset -3px -3px 0 0 rgba(0,0,0,0.25);
+  opacity: 1; /* видно за замовчуванням */
 }
 
-/* ☀️ Сонце (справа, для світлої теми) */
+/* ☀️ Сонце справа */
 .switch::after {
   right: 8px;
   border-radius: 50%;
   background: radial-gradient(circle, #ffd86b 40%, #ffaf3f 60%, transparent 61%);
   box-shadow: 0 0 10px rgba(255,175,63,0.8);
+  opacity: 0; /* сховане за замовчуванням */
 }
 
 /* ===== Повзунок ===== */
@@ -165,22 +167,22 @@ body {
   background: #fff;
   box-shadow: 0 4px 10px rgba(0,0,0,0.25);
   transition: transform 0.28s cubic-bezier(.2,.8,.2,1), background 0.3s ease;
-  z-index: 2; /* поверх іконок */
+  z-index: 1; /* вище іконок */
 }
 
-/* При світлій темі зсувається вправо */
+/* Увімкнена світла тема */
 #theme-switch:checked + .switch .knob {
   transform: translateX(30px);
 }
 
-/* ===== Логіка ховання іконок ===== */
+/* Логіка: міняємо прозорість іконок */
+#theme-switch:checked + .switch::before {
+  opacity: 0; /* місяць ховається */
+}
+#theme-switch:checked + .switch::after {
+  opacity: 1; /* сонце показується */
+}
 
-/* За замовчуванням (темна тема) видно тільки місяць */
-.switch::after { opacity: 0; }   /* сонце сховане */
-
-/* При світлій темі (checkbox checked) видно тільки сонце */
-#theme-switch:checked + .switch::before { opacity: 0; } /* місяць ховається */
-#theme-switch:checked + .switch::after { opacity: 1; } /* сонце з'являється */
 
 /* Легка індикація активності треку */
 #theme-switch:checked + .switch {
