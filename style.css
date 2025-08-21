@@ -4,15 +4,20 @@ html {
   scroll-behavior: smooth; /* плавний скролл при переходах */
 }
 body {
-  overflow-y: scroll;
+  min-height: 100vh; /* завжди на висоту екрану */
   margin: 0;
   font-family: "Inter", sans-serif;
+
   --x: 50%;
   --y: 50%;
-  background: radial-gradient(circle at var(--x) var(--y), #7265b3, #1f1c2c);
+
+  background: radial-gradient(circle at var(--x) var(--y), #7265b3 0%, #1f1c2c 100%);
+  background-attachment: fixed; /* фіксуємо бекграунд */
+  background-size: cover;       /* щоб точно перекривало */
   color: #fff;
   line-height: 1.6;
 }
+
 
 
 
