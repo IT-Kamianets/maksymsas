@@ -6,12 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.querySelector(".lightbox-img");
   const closeBtn = document.querySelector(".close-btn");
+  const themeSwitcher = document.querySelector(".theme-switcher"); // 🎯 свічер
 
   let scale = 1;
 
   document.querySelectorAll(".project-img").forEach(img => {
     img.addEventListener("click", () => {
       lightbox.classList.add("active");
+      themeSwitcher.classList.add("hidden"); // 🎯 ховаємо
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt;
       scale = 1;
@@ -19,9 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  closeBtn.addEventListener("click", () => lightbox.classList.remove("active"));
+  function closeLightbox() {
+    lightbox.classList.remove("active");
+    themeSwitcher.classList.remove("hidden"); // 🎯 показуємо назад
+  }
+
+  closeBtn.addEventListener("click", closeLightbox);
   lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) lightbox.classList.remove("active");
+    if (e.target === lightbox) closeLightbox();
   });
 
   lightbox.addEventListener("wheel", (e) => {
@@ -38,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let targetX = 50, targetY = 50;
   let currentX = 50, currentY = 50;
 
-  // pointermove кращий за mousemove (тач/стилус теж працює)
   document.addEventListener("pointermove", (e) => {
     targetX = (e.clientX / window.innerWidth) * 100;
     targetY = (e.clientY / window.innerHeight) * 100;
@@ -48,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
     currentX += (targetX - currentX) * 0.08;
     currentY += (targetY - currentY) * 0.08;
 
-    // оновлюємо лише при суттєвій зміні
     if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
       document.body.style.setProperty("--x", `${currentX.toFixed(2)}%`);
       document.body.style.setProperty("--y", `${currentY.toFixed(2)}%`);
@@ -86,7 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const checkbox = document.getElementById("theme-switch");
 
-  // 1) читаємо збережене або з системи
   const saved = localStorage.getItem("theme");
   const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
   const shouldLight = saved ? saved === "light" : prefersLight;
@@ -94,14 +98,12 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.classList.toggle("light-theme", shouldLight);
   checkbox.checked = shouldLight;
 
-  // 2) слухач зміни
   checkbox.addEventListener("change", () => {
     const light = checkbox.checked;
     document.body.classList.toggle("light-theme", light);
     localStorage.setItem("theme", light ? "light" : "dark");
   });
 
-  // 3) якщо користувач міняє системну тему (і немає явного saved) — реагуємо
   if (!saved && window.matchMedia) {
     const mq = window.matchMedia("(prefers-color-scheme: light)");
     mq.addEventListener("change", (e) => {

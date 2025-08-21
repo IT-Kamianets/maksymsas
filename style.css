@@ -80,6 +80,13 @@ body {
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(10px);
   box-shadow: var(--shadow);
+   transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.theme-switcher.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
 }
 
 /* Ховаємо реальний чекбокс */
