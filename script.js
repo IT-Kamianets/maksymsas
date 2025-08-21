@@ -131,29 +131,3 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
-// Перемикач теми
-const themeToggle = document.getElementById("themeToggle");
-
-themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("light-theme");
-
-  // зберігаємо вибір у localStorage
-  if (document.body.classList.contains("light-theme")) {
-    localStorage.setItem("theme", "light");
-  } else {
-    localStorage.setItem("theme", "dark");
-  }
-});
-
-// При завантаженні сторінки — підтягуємо тему
-document.addEventListener("DOMContentLoaded", () => {
-  if (localStorage.getItem("theme") === "light") {
-    document.body.classList.add("light-theme");
-  }
-});
-
-
-
-
-
