@@ -80,6 +80,31 @@ animateGradient();
 });
 
 
+let targetX = 50, targetY = 50;
+let currentX = 50, currentY = 50;
+
+document.addEventListener("mousemove", (e) => {
+  targetX = (e.clientX / window.innerWidth) * 100;
+  targetY = (e.clientY / window.innerHeight) * 100;
+});
+
+function animateGradient() {
+  // плавність
+  currentX += (targetX - currentX) * 0.08;
+  currentY += (targetY - currentY) * 0.08;
+
+  // тільки якщо зміна суттєва (>0.1%)
+  if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
+    document.body.style.setProperty("--x", `${currentX.toFixed(2)}%`);
+    document.body.style.setProperty("--y", `${currentY.toFixed(2)}%`);
+  }
+
+  requestAnimationFrame(animateGradient);
+}
+animateGradient();
+
+
+// 📦 оптимізований IntersectionObserver
 document.addEventListener("DOMContentLoaded", () => {
   const blocks = document.querySelectorAll(".glass, header, .project");
 
@@ -93,17 +118,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       const ratio = entry.intersectionRatio;
-      const scale = 0.97 + 0.03 * Math.min(Math.max(ratio, 0), 1); // 0.97 → 1
-      const opacity = 0.85 + 0.15 * Math.min(Math.max(ratio, 0), 1); // 0.85 → 1
-      entry.target.style.transform = `scale(${scale})`;
-      entry.target.style.opacity = opacity;
+      const scale = 0.97 + 0.03 * ratio;
+      const opacity = 0.85 + 0.15 * ratio;
+      entry.target.style.transform = `scale(${scale.toFixed(3)})`;
+      entry.target.style.opacity = opacity.toFixed(3);
     });
   }, {
-    threshold: Array.from({length: 101}, (_, i) => i / 100) // плавне відслідковування
+    threshold: [0, 0.25, 0.5, 0.75, 1] // ❗ достатньо
   });
 
   blocks.forEach(block => observer.observe(block));
 });
+
 
 
 
