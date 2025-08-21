@@ -131,26 +131,40 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 14px;
-  height: 14px;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 0; /* нижче повзунка */
 }
 
-/* Місяць ліворуч (темна тема) */
+/* 🌙 Місяць зліва */
 .switch::before {
-  left: 10px;
+  left: 8px;
   border-radius: 50%;
   background: radial-gradient(circle at 40% 40%, #fff 0 55%, transparent 56%);
   box-shadow: inset -3px -3px 0 0 rgba(0,0,0,0.25);
+  opacity: 1; /* видно у темній */
 }
 
-/* Сонце праворуч (світла тема) */
+/* ☀️ Сонце справа */
 .switch::after {
-  right: 10px;
+  right: 8px;
   border-radius: 50%;
   background: radial-gradient(circle, #ffd86b 40%, #ffaf3f 60%, transparent 61%);
   box-shadow: 0 0 10px rgba(255,175,63,0.8);
+  opacity: 0; /* сховане у темній */
+  transform: translateY(-50%) scale(0.6); /* зменшене щоб не мигало */
+}
+
+/* ===== Коли світла тема ===== */
+#theme-switch:checked + .switch::before {
+  opacity: 0; /* місяць схований */
+  transform: translateY(-50%) scale(0.6);
+}
+#theme-switch:checked + .switch::after {
+  opacity: 1; /* сонце видно */
+  transform: translateY(-50%) scale(1);
 }
 
 /* Увімкнено (світла тема) — зсув ручки праворуч */
