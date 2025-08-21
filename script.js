@@ -131,22 +131,5 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// Перемикач теми
-const themeSwitch = document.getElementById("theme-switch");
-
-themeSwitch.addEventListener("change", () => {
-  document.body.classList.toggle("light-theme", themeSwitch.checked);
-  // Зберігаємо у localStorage
-  localStorage.setItem("theme", themeSwitch.checked ? "light" : "dark");
-});
-
-// При завантаженні перевіряємо збережену тему
-document.addEventListener("DOMContentLoaded", () => {
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "light") {
-    document.body.classList.add("light-theme");
-    themeSwitch.checked = true;
-  }
-});
 
 
