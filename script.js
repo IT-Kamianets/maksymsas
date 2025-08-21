@@ -1,110 +1,64 @@
-// Динамічний рік у футері
+// ==== Динамічний рік у футері ====
 document.getElementById("year").textContent = new Date().getFullYear();
 
+// ==== Лайтбокс ====
 document.addEventListener("DOMContentLoaded", () => {
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.querySelector(".lightbox-img");
   const closeBtn = document.querySelector(".close-btn");
 
-  let scale = 1; // масштаб картинки
+  let scale = 1;
 
-  // Відкриття картинки
   document.querySelectorAll(".project-img").forEach(img => {
     img.addEventListener("click", () => {
       lightbox.classList.add("active");
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt;
-      scale = 1; // скидаємо масштаб
+      scale = 1;
       lightboxImg.style.transform = `scale(${scale})`;
     });
   });
 
-  // Закриття по кліку на хрестик
-  closeBtn.addEventListener("click", () => {
-    lightbox.classList.remove("active");
-  });
-
-  // Закриття по кліку поза картинкою
+  closeBtn.addEventListener("click", () => lightbox.classList.remove("active"));
   lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) {
-      lightbox.classList.remove("active");
-    }
+    if (e.target === lightbox) lightbox.classList.remove("active");
   });
 
-  // Масштабування колесиком
   lightbox.addEventListener("wheel", (e) => {
     e.preventDefault();
     if (!lightbox.classList.contains("active")) return;
-
-    if (e.deltaY < 0) {
-      // Прокрутка вгору → збільшуємо
-      scale = Math.min(scale + 0.1, 3);
-    } else {
-      // Прокрутка вниз → зменшуємо
-      scale = Math.max(scale - 0.1, 0.5);
-    }
+    scale += (e.deltaY < 0 ? 0.1 : -0.1);
+    scale = Math.max(0.5, Math.min(3, scale));
     lightboxImg.style.transform = `scale(${scale})`;
+  }, { passive: false });
+});
+
+// ==== Плавний рух градієнта від курсору ====
+(() => {
+  let targetX = 50, targetY = 50;
+  let currentX = 50, currentY = 50;
+
+  // pointermove кращий за mousemove (тач/стилус теж працює)
+  document.addEventListener("pointermove", (e) => {
+    targetX = (e.clientX / window.innerWidth) * 100;
+    targetY = (e.clientY / window.innerHeight) * 100;
   });
 
+  function animate() {
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
 
-//   // Рух градієнта за курсором
-// document.addEventListener("mousemove", (e) => {
-//   let x = (e.clientX / window.innerWidth) * 100;
-//   let y = (e.clientY / window.innerHeight) * 100;
-//   document.body.style.setProperty("--x", `${x}%`);
-//   document.body.style.setProperty("--y", `${y}%`);
-// });
-
-// Плавний рух градієнта
-let targetX = 50, targetY = 50; // ціль
-let currentX = 50, currentY = 50; // поточна позиція
-
-document.addEventListener("mousemove", (e) => {
-  targetX = (e.clientX / window.innerWidth) * 100;
-  targetY = (e.clientY / window.innerHeight) * 100;
-});
-
-function animateGradient() {
-  // коефіцієнт інерції (0.05 = дуже плавно, 0.2 = швидше)
-  currentX += (targetX - currentX) * 0.08;
-  currentY += (targetY - currentY) * 0.08;
-
-  document.body.style.setProperty("--x", `${currentX}%`);
-  document.body.style.setProperty("--y", `${currentY}%`);
-
-  requestAnimationFrame(animateGradient);
-}
-animateGradient();
-
-
-});
-
-
-let targetX = 50, targetY = 50;
-let currentX = 50, currentY = 50;
-
-document.addEventListener("mousemove", (e) => {
-  targetX = (e.clientX / window.innerWidth) * 100;
-  targetY = (e.clientY / window.innerHeight) * 100;
-});
-
-function animateGradient() {
-  // плавність
-  currentX += (targetX - currentX) * 0.08;
-  currentY += (targetY - currentY) * 0.08;
-
-  // тільки якщо зміна суттєва (>0.1%)
-  if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
-    document.body.style.setProperty("--x", `${currentX.toFixed(2)}%`);
-    document.body.style.setProperty("--y", `${currentY.toFixed(2)}%`);
+    // оновлюємо лише при суттєвій зміні
+    if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
+      document.body.style.setProperty("--x", `${currentX.toFixed(2)}%`);
+      document.body.style.setProperty("--y", `${currentY.toFixed(2)}%`);
+    }
+    requestAnimationFrame(animate);
   }
+  animate();
+})();
 
-  requestAnimationFrame(animateGradient);
-}
-animateGradient();
-
-
-// 📦 оптимізований IntersectionObserver
+// ==== IntersectionObserver: плавне "випливання" блоків ====
 document.addEventListener("DOMContentLoaded", () => {
   const blocks = document.querySelectorAll(".glass, header, .project");
 
@@ -116,20 +70,43 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
+    for (const entry of entries) {
       const ratio = entry.intersectionRatio;
       const scale = 0.97 + 0.03 * ratio;
       const opacity = 0.85 + 0.15 * ratio;
       entry.target.style.transform = `scale(${scale.toFixed(3)})`;
       entry.target.style.opacity = opacity.toFixed(3);
-    });
-  }, {
-    threshold: [0, 0.25, 0.5, 0.75, 1] // ❗ достатньо
-  });
+    }
+  }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
 
   blocks.forEach(block => observer.observe(block));
 });
 
+// ==== Тумблер теми + збереження вибору ====
+document.addEventListener("DOMContentLoaded", () => {
+  const checkbox = document.getElementById("theme-switch");
 
+  // 1) читаємо збережене або з системи
+  const saved = localStorage.getItem("theme");
+  const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+  const shouldLight = saved ? saved === "light" : prefersLight;
 
+  document.body.classList.toggle("light-theme", shouldLight);
+  checkbox.checked = shouldLight;
 
+  // 2) слухач зміни
+  checkbox.addEventListener("change", () => {
+    const light = checkbox.checked;
+    document.body.classList.toggle("light-theme", light);
+    localStorage.setItem("theme", light ? "light" : "dark");
+  });
+
+  // 3) якщо користувач міняє системну тему (і немає явного saved) — реагуємо
+  if (!saved && window.matchMedia) {
+    const mq = window.matchMedia("(prefers-color-scheme: light)");
+    mq.addEventListener("change", (e) => {
+      document.body.classList.toggle("light-theme", e.matches);
+      checkbox.checked = e.matches;
+    });
+  }
+});

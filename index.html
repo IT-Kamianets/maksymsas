@@ -8,13 +8,20 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- 🔘 Тумблер теми (закріплений зверху справа) -->
+    <div class="theme-switcher" title="Перемкнути тему">
+      <input type="checkbox" id="theme-switch" aria-label="Перемикач теми" />
+      <label for="theme-switch" class="switch">
+        <span class="knob" aria-hidden="true"></span>
+      </label>
+    </div>
+
     <div class="wrapper">
       <header class="glass">
         <img src="portrait.jpg" alt="Портрет Максима Саса" class="avatar" />
         <div>
           <h1>Максим Сас</h1>
           <p class="subtitle">Junior Web Developer · Front-End</p>
-          <!-- Кнопки -->
           <div class="social-links">
             <a
               href="https://github.com/maksimkaSAS"
@@ -66,6 +73,7 @@
             <li>Участь у проєкті wHealth.</li>
           </ul>
         </section>
+
         <h2 class="glass">Проєкти</h2>
         <section class="projects">
           <article class="glass project">
@@ -98,7 +106,10 @@
             <p>
               Щоденник для запису думок із сортуванням та зміною теми (Angular).
             </p>
-            <a href="https://github.com/IT-Kamianets/diary" target="_blank"
+            <a
+              href="https://github.com/IT-Kamianets/diary"
+              target="_blank"
+              class="social-btn"
               >GitHub</a
             >
           </article>
@@ -112,6 +123,7 @@
             <a
               href="https://github.com/maksimkaSAS/healthDiploma"
               target="_blank"
+              class="social-btn"
               >GitHub</a
             >
           </article>
@@ -123,9 +135,9 @@
       </footer>
     </div>
 
-    <!-- Модальне вікно для перегляду картинок -->
+    <!-- Лайтбокс -->
     <div id="lightbox" class="lightbox">
-      <span class="close-btn">&times;</span>
+      <span class="close-btn" aria-label="Закрити">&times;</span>
       <img class="lightbox-img" src="" alt="Прев'ю" />
     </div>
 
