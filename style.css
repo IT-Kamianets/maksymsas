@@ -50,7 +50,8 @@ html {
 body {
   min-height: 100%;
   margin: 0;
-  font-family: "Inter", sans-serif;
+  font-family: "Quicksand", sans-serif;
+   /* font-family: "Poppins", sans-serif; */
 
   /* позиція "центру" градієнта */
   --x: 50%;
@@ -66,6 +67,13 @@ body {
   line-height: 1.6;
 
   transition: background 0.6s ease, color 0.3s ease;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+}
+p, li {
+  font-weight: 400;
 }
 
 /* ===== Фіксований тумблер теми ===== */
