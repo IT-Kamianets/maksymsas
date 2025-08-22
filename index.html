@@ -16,6 +16,10 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
       rel="stylesheet"
     /> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- 🔘 Тумблер теми (закріплений зверху справа) -->
@@ -30,7 +34,42 @@
       <header class="glass">
         <img src="portrait.jpg" alt="Портрет Максима Саса" class="avatar" />
         <div>
-          <h1>Maksym Sas</h1>
+          <!-- <h1>Maksym Sas</h1> -->
+          <div class="name-with-note">
+            <h1>Maksym Sas</h1>
+            <svg
+              viewBox="0 0 260 120"
+              xmlns="http://www.w3.org/2000/svg"
+              class="arrow"
+            >
+              <path
+                d="M 250 80 Q 130 0 10 60"
+                stroke="var(--text)"
+                stroke-width="2"
+                fill="none"
+                marker-end="url(#arrowhead)"
+              />
+              <defs>
+                <marker
+                  id="arrowhead"
+                  markerWidth="10"
+                  markerHeight="7"
+                  refX="9"
+                  refY="3.5"
+                  orient="auto"
+                >
+                  <polyline
+                    points="0,0 10,3.5 0,7"
+                    stroke="var(--text)"
+                    stroke-width="2"
+                    fill="none"
+                  />
+                </marker>
+              </defs>
+            </svg>
+            <span class="note-text">my real surname <br />(not a joke)</span>
+          </div>
+
           <p class="subtitle">Junior Web Developer · Front-End</p>
           <div class="social-links">
             <a
