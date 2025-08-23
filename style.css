@@ -536,6 +536,12 @@ footer {
   transform: rotate(180deg);
 }
 
+.theme-toggle-arrow.hidden {
+  display: none !important;
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* ===== Медіа ===== */
 @media (max-width: 600px) {
   .wrapper {

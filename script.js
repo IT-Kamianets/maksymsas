@@ -1,19 +1,20 @@
 // ==== Динамічний рік у футері ====
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// ==== Лайтбокс ====
 document.addEventListener("DOMContentLoaded", () => {
+  // ==== Лайтбокс ====
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.querySelector(".lightbox-img");
   const closeBtn = document.querySelector(".close-btn");
-  const themeSwitcher = document.querySelector(".theme-switcher"); // 🎯 свічер
+  const themeSwitcher = document.querySelector(".theme-switcher");
 
   let scale = 1;
 
   document.querySelectorAll(".project-img").forEach((img) => {
     img.addEventListener("click", () => {
       lightbox.classList.add("active");
-      themeSwitcher.classList.add("hidden"); // 🎯 ховаємо
+      themeSwitcher.classList.add("hidden"); // ховаємо тумблер
+      arrowBtn.classList.add("hidden"); // ховаємо стрілку
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt;
       scale = 1;
@@ -23,7 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function closeLightbox() {
     lightbox.classList.remove("active");
-    themeSwitcher.classList.remove("hidden"); // 🎯 показуємо назад
+    themeSwitcher.classList.remove("hidden"); // показуємо назад
+    arrowBtn.classList.remove("hidden"); // показуємо стрілку
   }
 
   closeBtn.addEventListener("click", closeLightbox);
@@ -42,40 +44,37 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     { passive: false }
   );
-});
 
-// ==== Плавний рух градієнта від курсору ====
-(() => {
-  let targetX = 50,
-    targetY = 50;
-  let currentX = 50,
-    currentY = 50;
+  // ==== Плавний рух градієнта від курсору ====
+  (() => {
+    let targetX = 50,
+      targetY = 50;
+    let currentX = 50,
+      currentY = 50;
 
-  document.addEventListener("pointermove", (e) => {
-    targetX = (e.clientX / window.innerWidth) * 100;
-    targetY = (e.clientY / window.innerHeight) * 100;
-  });
+    document.addEventListener("pointermove", (e) => {
+      targetX = (e.clientX / window.innerWidth) * 100;
+      targetY = (e.clientY / window.innerHeight) * 100;
+    });
 
-  function animate() {
-    currentX += (targetX - currentX) * 0.08;
-    currentY += (targetY - currentY) * 0.08;
+    function animate() {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
 
-    if (
-      Math.abs(targetX - currentX) > 0.1 ||
-      Math.abs(targetY - currentY) > 0.1
-    ) {
-      document.body.style.setProperty("--x", `${currentX.toFixed(2)}%`);
-      document.body.style.setProperty("--y", `${currentY.toFixed(2)}%`);
+      if (
+        Math.abs(targetX - currentX) > 0.1 ||
+        Math.abs(targetY - currentY) > 0.1
+      ) {
+        document.body.style.setProperty("--x", `${currentX.toFixed(2)}%`);
+        document.body.style.setProperty("--y", `${currentY.toFixed(2)}%`);
+      }
+      requestAnimationFrame(animate);
     }
-    requestAnimationFrame(animate);
-  }
-  animate();
-})();
+    animate();
+  })();
 
-// ==== IntersectionObserver: плавне "випливання" блоків ====
-document.addEventListener("DOMContentLoaded", () => {
+  // ==== IntersectionObserver: плавне "випливання" блоків ====
   const blocks = document.querySelectorAll(".glass, header, .project");
-
   blocks.forEach((block) => {
     block.style.transition = "transform 0.5s ease, opacity 0.5s ease";
     block.style.transformOrigin = "center top";
@@ -97,22 +96,18 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   blocks.forEach((block) => observer.observe(block));
-});
 
-// ==== Тумблер теми + збереження вибору ====
-document.addEventListener("DOMContentLoaded", () => {
+  // ==== Тумблер теми + збереження вибору ====
   const checkbox = document.getElementById("theme-switch");
   const arrowBtn = document.getElementById("theme-arrow");
-const switcher = document.querySelector(".theme-switcher");
 
-if (arrowBtn) {
-  arrowBtn.addEventListener("click", () => {
-    switcher.classList.toggle("visible");
-    arrowBtn.classList.toggle("open");
-  });
-}
-
-  
+  // Мобільна кнопка-стрілка для відкриття тумблера
+  if (arrowBtn) {
+    arrowBtn.addEventListener("click", () => {
+      themeSwitcher.classList.toggle("visible");
+      arrowBtn.classList.toggle("open");
+    });
+  }
 
   const saved = localStorage.getItem("theme");
   const prefersLight =
