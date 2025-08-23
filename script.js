@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let scale = 1;
 
-  document.querySelectorAll(".project-img").forEach(img => {
+  document.querySelectorAll(".project-img").forEach((img) => {
     img.addEventListener("click", () => {
       lightbox.classList.add("active");
       themeSwitcher.classList.add("hidden"); // 🎯 ховаємо
@@ -31,19 +31,25 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === lightbox) closeLightbox();
   });
 
-  lightbox.addEventListener("wheel", (e) => {
-    e.preventDefault();
-    if (!lightbox.classList.contains("active")) return;
-    scale += (e.deltaY < 0 ? 0.1 : -0.1);
-    scale = Math.max(0.5, Math.min(3, scale));
-    lightboxImg.style.transform = `scale(${scale})`;
-  }, { passive: false });
+  lightbox.addEventListener(
+    "wheel",
+    (e) => {
+      e.preventDefault();
+      if (!lightbox.classList.contains("active")) return;
+      scale += e.deltaY < 0 ? 0.1 : -0.1;
+      scale = Math.max(0.5, Math.min(3, scale));
+      lightboxImg.style.transform = `scale(${scale})`;
+    },
+    { passive: false }
+  );
 });
 
 // ==== Плавний рух градієнта від курсору ====
 (() => {
-  let targetX = 50, targetY = 50;
-  let currentX = 50, currentY = 50;
+  let targetX = 50,
+    targetY = 50;
+  let currentX = 50,
+    currentY = 50;
 
   document.addEventListener("pointermove", (e) => {
     targetX = (e.clientX / window.innerWidth) * 100;
@@ -54,7 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
     currentX += (targetX - currentX) * 0.08;
     currentY += (targetY - currentY) * 0.08;
 
-    if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
+    if (
+      Math.abs(targetX - currentX) > 0.1 ||
+      Math.abs(targetY - currentY) > 0.1
+    ) {
       document.body.style.setProperty("--x", `${currentX.toFixed(2)}%`);
       document.body.style.setProperty("--y", `${currentY.toFixed(2)}%`);
     }
@@ -67,32 +76,48 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const blocks = document.querySelectorAll(".glass, header, .project");
 
-  blocks.forEach(block => {
+  blocks.forEach((block) => {
     block.style.transition = "transform 0.5s ease, opacity 0.5s ease";
     block.style.transformOrigin = "center top";
     block.style.transform = "scale(0.97)";
     block.style.opacity = 0.85;
   });
 
-  const observer = new IntersectionObserver(entries => {
-    for (const entry of entries) {
-      const ratio = entry.intersectionRatio;
-      const scale = 0.97 + 0.03 * ratio;
-      const opacity = 0.85 + 0.15 * ratio;
-      entry.target.style.transform = `scale(${scale.toFixed(3)})`;
-      entry.target.style.opacity = opacity.toFixed(3);
-    }
-  }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        const ratio = entry.intersectionRatio;
+        const scale = 0.97 + 0.03 * ratio;
+        const opacity = 0.85 + 0.15 * ratio;
+        entry.target.style.transform = `scale(${scale.toFixed(3)})`;
+        entry.target.style.opacity = opacity.toFixed(3);
+      }
+    },
+    { threshold: [0, 0.25, 0.5, 0.75, 1] }
+  );
 
-  blocks.forEach(block => observer.observe(block));
+  blocks.forEach((block) => observer.observe(block));
 });
 
 // ==== Тумблер теми + збереження вибору ====
 document.addEventListener("DOMContentLoaded", () => {
   const checkbox = document.getElementById("theme-switch");
+  const arrowBtn = document.getElementById("theme-arrow");
+const switcher = document.querySelector(".theme-switcher");
+
+if (arrowBtn) {
+  arrowBtn.addEventListener("click", () => {
+    switcher.classList.toggle("visible");
+    arrowBtn.classList.toggle("open");
+  });
+}
+
+  
 
   const saved = localStorage.getItem("theme");
-  const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+  const prefersLight =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: light)").matches;
   const shouldLight = saved ? saved === "light" : prefersLight;
 
   document.body.classList.toggle("light-theme", shouldLight);
