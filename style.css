@@ -9,7 +9,7 @@
   --text: #ffffff;
   --muted: #dddddd;
 
-  --glass-bg: rgba(255, 255, 255, 0.10);
+  --glass-bg: rgba(255, 255, 255, 0.1);
   --glass-border: rgba(255, 255, 255, 0.25);
   --shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
 
@@ -18,9 +18,9 @@
   --btn-hov: rgba(255, 255, 255, 0.35);
 
   /* app-button (зелений у темній) */
-  --app-btn-bg: rgba(46, 204, 113, 0.20);
-  --app-btn-bd: rgba(46, 204, 113, 0.40);
-  --app-btn-hover: rgba(46, 204, 113, 0.40);
+  --app-btn-bg: rgba(46, 204, 113, 0.2);
+  --app-btn-bd: rgba(46, 204, 113, 0.4);
+  --app-btn-hover: rgba(46, 204, 113, 0.4);
 }
 
 /* СВІТЛА (тепла, помаранчева) */
@@ -41,9 +41,9 @@ body.light-theme {
   --btn-hov: rgba(255, 255, 255, 1);
 
   /* app-button (помаранчевий у світлій) */
-  --app-btn-bg: rgba(255, 122, 24, 0.20);
+  --app-btn-bg: rgba(255, 122, 24, 0.2);
   --app-btn-bd: rgba(255, 122, 24, 0.45);
-  --app-btn-hover: rgba(255, 122, 24, 0.50);
+  --app-btn-hover: rgba(255, 122, 24, 0.5);
 }
 
 html {
@@ -63,8 +63,11 @@ body {
   --x: 50%;
   --y: 50%;
 
-  background:
-    radial-gradient(circle at var(--x) var(--y), var(--bg-start) 0%, var(--bg-end) 100%);
+  background: radial-gradient(
+    circle at var(--x) var(--y),
+    var(--bg-start) 0%,
+    var(--bg-end) 100%
+  );
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
@@ -129,7 +132,11 @@ li {
   position: relative;
   transition: background 0.3s ease, box-shadow 0.3s ease;
   box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.15));
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.15)
+  );
   overflow: hidden;
   /* щоб світіння не виходило за межі */
 }
@@ -145,7 +152,8 @@ li {
   background: var(--toggle-color-dark);
   /* темна за замовчуванням */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-  transition: transform 0.28s cubic-bezier(.2, .8, .2, 1), background 0.3s ease;
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 0.3s ease;
 }
 
 /* Декоративні "іконки" за допомогою градієнтів */
@@ -178,7 +186,6 @@ li {
   /* приховано у світлій темі */
 }
 
-
 /* Активна темна → підсвітка праворуч (світла тема) */
 body:not(.light-theme) .switch::after {
   opacity: 0.6;
@@ -208,7 +215,7 @@ body.light-theme .switch::before {
 /*dep
 
 /* Увімкнено (світла тема) — зсув ручки праворуч */
-#theme-switch:checked+.switch .knob {
+#theme-switch:checked + .switch .knob {
   transform: translateX(30px);
   background: var(--toggle-color-light);
   /* світла */
@@ -222,12 +229,16 @@ body.light-theme .switch::before {
 }
 
 /* Легка індикація активності треку */
-#theme-switch:checked+.switch {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.35));
+#theme-switch:checked + .switch {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.65),
+    rgba(255, 255, 255, 0.35)
+  );
 }
 
 /* Фокус з клавіатури */
-#theme-switch:focus-visible+.switch {
+#theme-switch:focus-visible + .switch {
   outline: 2px solid #8899ff;
   outline-offset: 2px;
 }
@@ -256,7 +267,6 @@ body.light-theme .switch::before {
   border-color: var(--btn-bd);
   transform: translateY(-2px);
 }
-
 
 /* ===== Контент ===== */
 
@@ -476,7 +486,6 @@ footer {
   text-align: center;
 }
 
-
 /* ===== Кнопка-стрілка для мобільного ===== */
 .theme-toggle-arrow {
   position: fixed;
@@ -495,7 +504,7 @@ footer {
   -webkit-tap-highlight-color: transparent; /* для Android/Chrome */
   outline: none;
 
-   user-select: none;
+  user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
 }
@@ -526,7 +535,6 @@ footer {
 .theme-toggle-arrow.open svg {
   transform: rotate(180deg);
 }
-
 
 /* ===== Медіа ===== */
 @media (max-width: 600px) {
@@ -588,15 +596,14 @@ footer {
     text-align: center;
   }
 
-    .theme-switcher {
+  .theme-switcher {
     position: fixed;
     top: 20px;
     right: 60px;
     transform: translateX(20px);
     opacity: 0;
     pointer-events: none;
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.35s ease;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
   }
 
   .theme-switcher.visible {
@@ -605,7 +612,9 @@ footer {
     pointer-events: auto;
   }
 
-  .theme-toggle-arrow { display: flex; }
+  .theme-toggle-arrow {
+    display: flex;
+  }
 
   /* .theme-toggle-arrow.rotate {
   transform: rotate(180deg);
@@ -654,8 +663,6 @@ footer {
   h1 {
     font-size: 1.8rem;
   }
-
-
 }
 
 @media (min-width: 901px) {

@@ -1,0 +1,89 @@
+/* ===== Змінні тем ===== */
+:root {
+  /* Темна тема за замовчуванням */
+  --preloader-bg1: #7265b3;
+  --preloader-bg2: #ffffff;
+  --preloader-bg3: #dddddd;
+  --preloader-bg4: #1f1c2c;
+
+  --text-color: #ffffff; /* текст на сторінці */
+}
+
+/* Світла тема */
+body.light-theme {
+  --preloader-bg1: #ff0e004f; /* насичене червоне з прозорістю */
+  --preloader-bg2: #fff3e0; /* теплий світлий шар */
+  --preloader-bg3: #ffd9b3; /* ніжний персиковий */
+  --preloader-bg4: #ff9522; /* яскравий оранжевий */
+
+  --text-color: #1f1c2c; /* темний текст на сторінці */
+}
+
+/* ===== Прелоадер ===== */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* Базовий стиль блоку */
+.block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(0);
+  animation: slideDown 2.8s forwards cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* Шари прелоадера */
+.layer1 {
+  background: var(--preloader-bg1);
+  z-index: 4;
+  animation-delay: 0s;
+}
+.layer2 {
+  background: var(--preloader-bg2);
+  z-index: 3;
+  animation-delay: 0.4s;
+}
+.layer3 {
+  background: var(--preloader-bg3);
+  z-index: 2;
+  animation-delay: 0.8s;
+}
+.layer4 {
+  background: var(--preloader-bg4);
+  z-index: 1;
+  animation-delay: 1.2s;
+}
+
+/* Анімація з bounce */
+@keyframes slideDown {
+  0% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY(100%);
+  }
+  90% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Приховування прелоадера */
+#preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+/* ===== Текст на сторінці ===== */
+body {
+  color: var(--text-color);
+}
