@@ -492,8 +492,19 @@ footer {
   background: none;
   border: none;
 
-   -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent; /* для Android/Chrome */
   outline: none;
+
+   user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.theme-toggle-arrow:focus,
+.theme-toggle-arrow:active {
+  outline: none;
+  background: none;
+  box-shadow: none;
 }
 
 .theme-toggle-arrow svg {
