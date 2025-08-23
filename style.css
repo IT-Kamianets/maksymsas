@@ -491,39 +491,9 @@ footer {
   cursor: pointer;
   background: none;
   border: none;
-}
 
-.theme-toggle-arrow svg {
-  width: 28px;
-  height: 28px;
-  stroke: var(--text);
-  stroke-width: 3.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
-  opacity: 0.6;
-  transition: transform 0.35s ease, opacity 0.3s ease;
-}
-
-.theme-toggle-arrow:hover svg {
-  opacity: 1;
-}
-
-.theme-toggle-arrow.open svg {
-  transform: rotate(180deg);
-}.theme-toggle-arrow {
-  position: fixed;
-  top: 20px;
-  right: 16px;
-  z-index: 1101;
-  width: 44px;
-  height: 44px;
-  display: none; /* спочатку прихована */
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background: none;
-  border: none;
+   -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 .theme-toggle-arrow svg {
@@ -545,7 +515,6 @@ footer {
 .theme-toggle-arrow.open svg {
   transform: rotate(180deg);
 }
-
 
 
 /* ===== Медіа ===== */
