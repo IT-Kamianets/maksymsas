@@ -316,6 +316,99 @@ h2 {
   padding-left: 20px;
 }
 
+.skills ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+}
+
+.skills li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 20px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  color: var(--text);
+  font-weight: 500;
+  font-size: 15px;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: default;
+}
+
+.skills li:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: var(--btn-hov);
+  color: var(--text);
+}
+
+.skills li i,
+.skills li .material-icons-outlined {
+  font-size: 20px;
+  color: var(--text);
+  opacity: 0.85;
+  transition: opacity 0.3s ease, transform 0.25s ease;
+}
+
+.skills li:hover i,
+.skills li:hover .material-icons-outlined {
+  opacity: 1;
+  transform: scale(1.1);
+}
+.skills ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+}
+
+.skills li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 20px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  color: var(--text);
+  font-weight: 500;
+  font-size: 15px;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: default;
+}
+
+.skills li:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: var(--btn-hov);
+  color: var(--text);
+}
+
+.skills li i,
+.skills li .material-icons-outlined {
+  font-size: 20px;
+  color: var(--text);
+  opacity: 0.85;
+  transition: opacity 0.3s ease, transform 0.25s ease;
+}
+
+.skills li:hover i,
+.skills li:hover .material-icons-outlined {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
 .projects {
   display: grid;
   gap: 20px;
