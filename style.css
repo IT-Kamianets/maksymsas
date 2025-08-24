@@ -311,6 +311,72 @@ h2 {
   color: var(--text);
 }
 
+/* ===== Education Section ===== */
+.education {
+  text-align: left;
+}
+
+.education h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.education h2 .material-icons-outlined {
+  font-size: 28px;
+  color: var(--text);
+}
+
+.edu-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 15px;
+  border-radius: 12px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+/* .edu-item:hover {
+  transform: translateY(-3px) scale(1.02);
+  background: var(--btn-hov);
+} */
+
+.edu-item .material-icons-outlined {
+  font-size: 32px;
+  color: var(--text);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.edu-item h3 {
+  margin: 0 0 6px;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.edu-item p {
+  margin: 3px 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.edu-item .edu-years {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.edu-item .edu-grade {
+  font-style: italic;
+  color: var(--muted);
+}
+
 .skills ul,
 .experience ul {
   padding-left: 20px;
